@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useDownloadUrl } from "@/hooks/use-download-url";
+import Image from "next/image";
 
 const Navigation = () => {
   const downloadUrl = useDownloadUrl();
@@ -11,7 +12,13 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent"></div>
+          <Image
+            src="/appswap.png"
+            alt="AppSwap Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8"
+          />
           <span className="text-xl font-bold text-gradient">AppSwap</span>
         </div>
         
