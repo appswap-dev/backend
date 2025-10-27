@@ -2,34 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-
-const getDownloadUrl = () => {
-  if (typeof window === 'undefined') return '#';
-
-  const platform = window.navigator.platform.toLowerCase();
-  const userAgent = window.navigator.userAgent.toLowerCase();
-
-  // macOS
-  if (platform.includes('mac') || userAgent.includes('mac')) {
-    return 'https://github.com/appswap-dev/appswap-releases/releases/latest/download/AppSwap-darwin-arm64-1.0.2.zip';
-  }
-
-  // Windows
-  if (platform.includes('win') || userAgent.includes('win')) {
-    return 'https://github.com/appswap-dev/appswap-releases/releases/latest/download/AppSwap-1.0.2.Setup.exe';
-  }
-
-  // Linux - check for specific distros
-  if (platform.includes('linux') || userAgent.includes('linux')) {
-    // Default to .deb for Debian/Ubuntu-based systems
-    return 'https://github.com/appswap-dev/appswap-releases/releases/latest/download/appswap_1.0.2_amd64.deb';
-  }
-
-  // Default to deb
-  return 'https://github.com/appswap-dev/appswap-releases/releases/latest/download/appswap_1.0.2_amd64.deb';
-};
+import { useDownloadUrl } from "@/hooks/use-download-url";
 
 const Hero = () => {
+  const downloadUrl = useDownloadUrl();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
       {/* Animated background elements */}
@@ -58,7 +35,7 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button variant="hero" size="lg" className="text-lg px-8 py-6 h-auto" asChild>
-            <a href={getDownloadUrl()}>
+            <a href={downloadUrl}>
               <Download className="w-5 h-5" />
               Download AppSwap
             </a>
